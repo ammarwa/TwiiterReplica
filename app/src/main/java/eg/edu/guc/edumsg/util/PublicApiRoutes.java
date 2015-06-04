@@ -3,6 +3,7 @@ package eg.edu.guc.edumsg.util;
 
 import eg.edu.guc.edumsg.Model.LoginResponse;
 import eg.edu.guc.edumsg.Model.TimeLineResponse;
+import eg.edu.guc.edumsg.Tasks.DeleteTweetTask;
 import eg.edu.guc.edumsg.Tasks.LoginTask;
 import eg.edu.guc.edumsg.Tasks.LogoutTask;
 import eg.edu.guc.edumsg.Tasks.NewTweetTask;
@@ -28,5 +29,8 @@ public interface PublicApiRoutes {
 
     @POST("/")
     void getProfile(@Body TimeLineCommandTask timeLineCommandTask, Callback<TimeLineResponse> callback);
+
+    @POST("/")
+    void deleteTweet(@Body DeleteTweetTask deleteTweetTask, Callback<Response> callback);
 }
 

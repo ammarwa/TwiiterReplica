@@ -24,6 +24,7 @@ import eg.edu.guc.edumsg.Model.TimeLineResponse;
 import eg.edu.guc.edumsg.Model.Tweet;
 import eg.edu.guc.edumsg.Model.User;
 import eg.edu.guc.edumsg.R;
+import eg.edu.guc.edumsg.Tasks.DeleteTweetTask;
 import eg.edu.guc.edumsg.Tasks.LogoutTask;
 import eg.edu.guc.edumsg.Tasks.NewTweetTask;
 import eg.edu.guc.edumsg.Tasks.TimeLineCommandTask;
@@ -172,6 +173,26 @@ public class MainActivity extends BasePublicActivity
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, frag).commit();
+    }
+
+    public void delete_post_profile_btn (View v){
+
+        DeleteTweetTask deleteTweetTask = new DeleteTweetTask("");
+        ApiRouter.withoutToken().deleteTweet(deleteTweetTask, new Callback<Response>() {
+            @Override
+            public void success(Response response, Response response2) {
+                Toast.makeText(getCurrentAct(), "Done ;)", Toast.LENGTH_LONG);
+                actionBar.setTitle(R.string.title_section1);
+                android.app.FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new NewsFeeds()).commit();
+            }
+
+            @Override
+            public void failure(RetrofitError retrofitError) {
+                displayError(retrofitError);
+            }
+        });
     }
 
     public void submit_new_post_btn(View v){

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/va"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,15 +39,15 @@
             android:id="@+id/prof_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cover"
+            android:layout_alignEnd="@+id/linearLayout2"
+            android:layout_alignLeft="@+id/linearLayout2"
+            android:layout_alignRight="@+id/linearLayout2"
+            android:layout_alignStart="@+id/linearLayout2"
             android:layout_gravity="center_horizontal"
             android:padding="12dip"
             android:text="Ammar ELWazir"
             android:textColor="#ffffffff"
-            android:layout_alignBottom="@+id/cover"
-            android:layout_alignLeft="@+id/linearLayout2"
-            android:layout_alignStart="@+id/linearLayout2"
-            android:layout_alignRight="@+id/linearLayout2"
-            android:layout_alignEnd="@+id/linearLayout2"
             android:textSize="@dimen/abc_text_size_title_material"
             android:textStyle="bold"
             android:typeface="serif" />
@@ -57,36 +56,36 @@
             android:id="@+id/img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/profile_pic"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="15dp" />
+            android:src="@drawable/profile_pic" />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="6dp"
             android:layout_toRightOf="@+id/img"
-            android:gravity="bottom"
-            android:id="@+id/linearLayout2">
+            android:gravity="bottom">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:gravity="center">
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/textView_ex7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="about_me_back_click"
                     android:text="Back"
                     android:textColor="@color/main_color_gray"
-                    android:onClick="about_me_back_click"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -102,10 +101,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:gravity="center">
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/textView_ex8"
@@ -137,10 +136,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:gravity="center">
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/textView_ex10"
@@ -165,13 +164,21 @@
 
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main_color_gray"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:orientation="vertical"
-        android:background="@color/tab_bg_color">
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -179,9 +186,14 @@
             android:text="Email"/>
 
         <TextView
+            android:id="@+id/email_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -189,9 +201,14 @@
             android:text="Gender"/>
 
         <TextView
+            android:id="@+id/gender_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/gender_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -199,9 +216,14 @@
             android:text="Date Of Birth"/>
 
         <TextView
+            android:id="@+id/date_of_birth_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/date_of_birth_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -209,9 +231,14 @@
             android:text="Country"/>
 
         <TextView
+            android:id="@+id/country_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/country_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -219,9 +246,14 @@
             android:text="Language"/>
 
         <TextView
+            android:id="@+id/language_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/language_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -229,9 +261,14 @@
             android:text="Website"/>
 
         <TextView
+            android:id="@+id/website_profile_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/website_profile_info"/>
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
 
         <TextView
             android:layout_width="match_parent"
@@ -239,10 +276,23 @@
             android:text="Bio"/>
 
         <TextView
+            android:id="@+id/bio_profile_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dk" />
+
+        <Button
+            style="@style/tab_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bio_profile_info"/>
+            android:onClick="edit_profile_btn"
+            android:text="Edit My Profile" />
 
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

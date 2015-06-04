@@ -37,16 +37,17 @@ import retrofit.client.Response;
 public class MainActivity extends BasePublicActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnFragmentInteractionListener{
 
+    ActionBar actionBar;
+    android.app.Fragment frag;
+    List<Tweet> myTweets;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    ActionBar actionBar;
 
     public void setmTitle(String s) {
         mTitle = s;
@@ -88,9 +89,6 @@ public class MainActivity extends BasePublicActivity
     public Activity getCurrentAct(){
         return this;
     }
-
-    android.app.Fragment frag;
-    List<Tweet> myTweets;
 
     public void onSectionAttached(int number) {
         switch (number) {
@@ -171,6 +169,10 @@ public class MainActivity extends BasePublicActivity
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, frag).commit();
+    }
+
+    public void edit_profile_btn(View v) {
+
     }
 
     public void delete_post_profile_btn (View v){
@@ -358,6 +360,9 @@ public class MainActivity extends BasePublicActivity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        public PlaceholderFragment() {
+        }
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
@@ -368,9 +373,6 @@ public class MainActivity extends BasePublicActivity
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
-        }
-
-        public PlaceholderFragment() {
         }
 
         @Override

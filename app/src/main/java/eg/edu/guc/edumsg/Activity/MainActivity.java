@@ -17,8 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import eg.edu.guc.edumsg.Activity.base.BasePublicActivity;
 import eg.edu.guc.edumsg.Model.TimeLineResponse;
+import eg.edu.guc.edumsg.Model.Tweet;
 import eg.edu.guc.edumsg.Model.User;
 import eg.edu.guc.edumsg.R;
 import eg.edu.guc.edumsg.Tasks.LogoutTask;
@@ -86,6 +89,7 @@ public class MainActivity extends BasePublicActivity
     }
 
     android.app.Fragment frag;
+    List<Tweet> myTweets;
 
     public void onSectionAttached(int number) {
         switch (number) {
@@ -103,6 +107,7 @@ public class MainActivity extends BasePublicActivity
                 ApiRouter.withoutToken().getProfile(timeLineCommandTask, new Callback<TimeLineResponse>() {
                     @Override
                     public void success(TimeLineResponse response, Response response2) {
+                        myTweets = response.getTweets();
                         mTitle = getString(R.string.title_section3);
                         Log.e("response", response.toString());
                         for(int i = 0; i < response.getTweets().size(); i++) {
@@ -190,7 +195,17 @@ public class MainActivity extends BasePublicActivity
     }
 
     public void about_me_click(View v) {
-        
+        actionBar.setTitle("About ME");
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new ProfileAboutMe()).commit();
+    }
+
+    public void about_me_back_click(View v){
+        actionBar.setTitle(R.string.title_section3);
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new Profile(myTweets)).commit();
     }
 
     public void like_btn_profile(View v){

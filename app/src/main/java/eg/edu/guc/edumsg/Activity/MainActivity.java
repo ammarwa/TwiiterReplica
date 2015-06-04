@@ -110,9 +110,7 @@ public class MainActivity extends BasePublicActivity
                     public void success(TimeLineResponse response, Response response2) {
                         myTweets = response.getTweets();
                         mTitle = getString(R.string.title_section3);
-                        Log.e("response", response.toString());
                         for(int i = 0; i < response.getTweets().size(); i++) {
-                            Log.e("Tweet " + i, response.getTweets().get(i).toString());
                         }
                         frag = new Profile(response.getTweets());
                         changeFrag(frag);
@@ -177,14 +175,14 @@ public class MainActivity extends BasePublicActivity
 
     public void delete_post_profile_btn (View v){
 
-        TextView date = (TextView) findViewById(R.id.post_item_date);
-        TextView name = (TextView) findViewById(R.id.post_item_title);
-        String dateS = date.getText().toString();
+        TextView name = (TextView) findViewById(R.id.textView_ex2);
+        TextView text = (TextView) findViewById(R.id.textView_ex3);
         String nameS = name.getText().toString();
+        String textS = text.getText().toString();
         String tweet_id = "";
         for(int i = 0; i < myTweets.size(); i++){
             if(nameS.equals(myTweets.get(i).getCreator().getName())){
-                if(dateS.equals(myTweets.get(i).getCreated_at())){
+                if(textS.equals(myTweets.get(i).getTweet_text())) {
                     tweet_id = myTweets.get(i).getId();
                 }
             }

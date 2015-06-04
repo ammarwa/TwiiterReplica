@@ -177,22 +177,37 @@ public class MainActivity extends BasePublicActivity
 
     public void delete_post_profile_btn (View v){
 
-        DeleteTweetTask deleteTweetTask = new DeleteTweetTask("");
-        ApiRouter.withoutToken().deleteTweet(deleteTweetTask, new Callback<Response>() {
-            @Override
-            public void success(Response response, Response response2) {
-                Toast.makeText(getCurrentAct(), "Done ;)", Toast.LENGTH_LONG);
-                actionBar.setTitle(R.string.title_section1);
-                android.app.FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new NewsFeeds()).commit();
+        TextView date = (TextView) findViewById(R.id.post_item_date);
+        TextView name = (TextView) findViewById(R.id.post_item_title);
+        String dateS = date.getText().toString();
+        String nameS = name.getText().toString();
+        String tweet_id = "";
+        for(int i = 0; i < myTweets.size(); i++){
+            if(nameS.equals(myTweets.get(i).getCreator().getName())){
+                if(dateS.equals(myTweets.get(i).getCreated_at())){
+                    tweet_id = myTweets.get(i).getId();
+                }
             }
+        }
+        if(!tweet_id.equals("")) {
+            DeleteTweetTask deleteTweetTask = new DeleteTweetTask(tweet_id);
 
-            @Override
-            public void failure(RetrofitError retrofitError) {
-                displayError(retrofitError);
-            }
-        });
+            ApiRouter.withoutToken().deleteTweet(deleteTweetTask, new Callback<Response>() {
+                @Override
+                public void success(Response response, Response response2) {
+                    Toast.makeText(getCurrentAct(), "Done ;)", Toast.LENGTH_LONG);
+                    actionBar.setTitle(R.string.title_section1);
+                    android.app.FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, new NewsFeeds()).commit();
+                }
+
+                @Override
+                public void failure(RetrofitError retrofitError) {
+                    displayError(retrofitError);
+                }
+            });
+        }
     }
 
     public void submit_new_post_btn(View v){
